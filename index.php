@@ -1,6 +1,6 @@
 <?php
 session_start();
-if( $_SESSION["user"]) {
+if( isset($_SESSION["user"])) {
 echo "Welcome ". $_SESSION["user"] ;
 //print_r($_SESSION);
 }
@@ -54,13 +54,34 @@ Password: <input type="password" name="password"><br>
 </form>
 
 <h2> Login</h2>
-<form action="login.php" method="post">
+<form  method="post">
 Name: <input type="text" name="username"><br>
 Password: <input type="password" name="password"><br>
 <input type="submit">
 </form>
 
+<?php
+require 'conect.php';
 
+if(isset($_POST['username'])) {
+$username=$_POST["username"];
+$password=$_POST["password"];
+$sql = "select * FROM user_data WHERE username='$username' AND password='$password' ";
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "id: " . $row["user_id"]. " - Name: " . $row["username"]. " " . $row["password"]. "<br>";
+    }
+    $_SESSION["user"] = $username;
+    $_SESSION["user_id"] = $row["user_id"];
+} else {
+    echo "User or password is incorrect ";
+}
+}
+ ?>
 
 
 <form>
@@ -80,4 +101,3 @@ Password: <input type="password" name="password"><br>
 
 <input type='text' onkeydown="liveSearch(this.value)">
 <div id="dropDown"> </div>
-
