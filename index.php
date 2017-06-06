@@ -180,6 +180,7 @@ Password: <input type="password" name="password"><br>
 
 
 
+
 <div class="login">
 <h2 id="login"> Login</h2>
 <form  method="post">
@@ -193,6 +194,7 @@ Password: <input type="password" name="password"><br>
 </div>
 
 </div>
+
 
 <?php
 // TODO : MODIFICA SA ARATE NUMELE FARA ID SI AUTORELOAD LA PAGINA PENTRU WELCOME DE SUS
@@ -219,6 +221,3 @@ if (mysqli_num_rows($result) > 0) {
 }
 }
  ?>
-
-
-
