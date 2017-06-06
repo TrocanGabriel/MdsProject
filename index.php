@@ -7,9 +7,6 @@ echo "<p align=center>"."Welcome ". $_SESSION["user"]."</p>";
 ?>
 <head>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="style/clock.css">
-<link rel="stylesheet" type="text/css" href="style/main.css">
 
 <script>
 function showGenre(str) {
@@ -49,8 +46,12 @@ function showGenre(str) {
 }
     
 </script>
+
 </head>
 
+<canvas id="canvas">
+  </canvas>
+  
 <div class="mainelements">
 
   <ul>
@@ -221,3 +222,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 }
  ?>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script  language="JavaScript" src="scripts/clock.js"></script>
+<link rel="stylesheet" type="text/css" href="style/clock.css">
+<link rel="stylesheet" type="text/css" href="style/main.css">
