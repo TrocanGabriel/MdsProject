@@ -3,7 +3,7 @@
 $q=$_GET['q'];
 require 'conect.php';
 
-$sql = "select * FROM movies   WHERE movie_title like '%$q%' ";
+$sql = "select * FROM movies   WHERE movie_title like '%$q%' LIMIT 5 ";
 
 $result = mysqli_query($conn, $sql);
 
