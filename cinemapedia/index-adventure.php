@@ -27,7 +27,7 @@
 		<?php
 			try {
 
-				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts ORDER BY postID DESC');
+				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE postCategory = trim(lower(\'adventure\')) ORDER BY postID DESC');
 				while($row = $stmt->fetch()){
 					
 					echo '<div>';

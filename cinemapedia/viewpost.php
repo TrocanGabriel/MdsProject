@@ -26,38 +26,15 @@ if($row['postID'] == ''){
 		<h1>Cinemapedia</h1>
 		<hr />
 	<div class="mainelements">
-
-  <ul>
-    <li class="home"><a href="./"> Home </a></li>
-    <li>
-      <div class="dropdownMeniu">
-        <button class="dropbtn"><a href="template/horror.html"> Horror</a>
-        </button>
-           
-      </div>
-    </li>
-    <li>
-     <div class="dropdownMeniu">
-        <button class="dropbtn"><a href="template/action.html"> Actiune</a>
-        </button>
-          
-      </div>
-    </li>
-    <li>
-    <div class="dropdownMeniu">
-        <button class="dropbtn"><a href="template/adventure.html"> Aventura</a>
-        </button>
-      </div>
-    </li>
-    <li>
-    <div class="dropdownMeniu">
-        <button class="dropbtn"><a href="template/fantasy.html"> Fantasy</a>
-        </button>
-      </div>
-    </li>
-      <li class="home"><a href="template/contact.html"> Contact </a></li>
-  </ul>
-</div>
+	  <ul>
+		<li class="home"><a href="./"> Home </a></li>
+		<li class="home"><a href="horror-index.php"> Horror </a></li>
+		<li class="home"><a href="action-index.php"> Action </a></li>
+		<li class="home"><a href="adventure-index.php"> Adventure </a></li>
+		<li class="home"><a href="fantasy-index.php"> Fantasy </a></li>
+		  <li class="home"><a href="#"> Contact </a></li>
+	  </ul>
+	</div>
 
 
 		<?php	
