@@ -61,9 +61,10 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 			try {
 
 				//insert into database
-				$stmt = $db->prepare('INSERT INTO blog_posts (postTitle,postDesc,postCont,postDate) VALUES (:postTitle, :postDesc, :postCont, :postDate)') ;
+				$stmt = $db->prepare('INSERT INTO blog_posts (postTitle,postDesc,postCont,postDate,postCategory) VALUES (:postTitle, :postDesc, :postCont, :postDate, :postCategory)') ;
 				$stmt->execute(array(
 					':postTitle' => $postTitle,
+					':postCategory' => $postCategory,
 					':postDesc' => $postDesc,
 					':postCont' => $postCont,
 					':postDate' => date('Y-m-d H:i:s')
@@ -94,6 +95,9 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 		<p><label>Title</label><br />
 		<input type='text' name='postTitle' value='<?php if(isset($error)){ echo $_POST['postTitle'];}?>'></p>
 
+		<p><label>Category</label><br />
+		<input type='text' name='postCategory' value='<?php if(isset($error)){ echo $_POST['postCategory'];}?>'></p>
+		
 		<p><label>Description</label><br />
 		<textarea name='postDesc' cols='60' rows='10'><?php if(isset($error)){ echo $_POST['postDesc'];}?></textarea></p>
 
