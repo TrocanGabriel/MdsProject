@@ -34,7 +34,7 @@ if($row['postID'] == ''){
 		<li class="home"><a href="index-action.php"> Action </a></li>
 		<li class="home"><a href="index-adventure.php"> Adventure </a></li>
 		<li class="home"><a href="index-fantasy.php"> Fantasy </a></li>
-		  <li class="home"><a href="#"> Contact </a></li>
+		  <li class="home"><a href="index-contact.php"> Contact </a></li>
 	  </ul>
 	</div>
 
