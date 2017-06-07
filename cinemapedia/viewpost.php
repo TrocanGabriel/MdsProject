@@ -18,6 +18,8 @@ if($row['postID'] == ''){
     <title>Cinemapedia - <?php echo $row['postTitle'];?></title>
     <link rel="stylesheet" href="style/normalize.css">
     <link rel="stylesheet" href="style/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -32,7 +34,7 @@ if($row['postID'] == ''){
 		<li class="home"><a href="action-index.php"> Action </a></li>
 		<li class="home"><a href="adventure-index.php"> Adventure </a></li>
 		<li class="home"><a href="fantasy-index.php"> Fantasy </a></li>
-		  <li class="home"><a href="#"> Contact </a></li>
+		<li class="home"><a href="#"> Contact </a></li>
 	  </ul>
 	</div>
 
@@ -40,12 +42,79 @@ if($row['postID'] == ''){
 		<?php	
 			echo '<div>';
 				echo '<h1>'.$row['postTitle'].'</h1>';
+				echo '<div id="ratingAll"></div>';
+				if(isset($_SESSION['user_id']))
+					echo '<div id="ratingUser"></div>';
 				echo '<p>Posted on '.date('jS M Y', strtotime($row['postDate'])).'</p>';
 				echo '<p>'.$row['postCont'].'</p>';				
 			echo '</div>';
 		?>
-
+		
 	</div>
+	<script>
+	$(function () {
 
+	$("#ratingAll").rateYo({
+	rating: <?php
+	$stmt = $db->prepare('SELECT ifnull(avg(rating),0) res FROM ratings WHERE movie = :postID');
+	$stmt->execute(array(':postID' => $_GET['id']));
+	$row = $stmt->fetch();
+	echo $row['res'];
+	?>,
+	numStars: 10,
+	maxValue: 10,
+	readOnly: true,
+	multiColor: {
+		"startColor": "#FF0000",
+		"endColor"  : "#00FF00"
+    }
+	});
+	
+	$("#ratingUser").rateYo({
+	rating: <?php
+	if(isset($_SESSION['user_id'])){
+	$stmt = $db->prepare('SELECT ifnull(rating,0) res FROM ratings WHERE movie = :postID AND user = :userID');
+	$stmt->execute(array(':postID' => $_GET['id']));
+	$stmt->execute(array(':userID' => $_SESSION['user_id']));
+	$row = $stmt->fetch();
+	echo $row['res'];
+	}
+	else{
+		echo '0';
+	}
+	?>,
+	numStars: 10,
+	maxValue: 10,
+	fullStar: true,
+	multiColor: {
+		"startColor": "#FF0000",
+		"endColor"  : "#00FF00"
+	},
+	onSet: function (rating, rateYoInstance) {
+		rateMovie(rating);
+		window.location.reload();
+    }
+	});
+	});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script>   
+ function rateMovie(x) {
+  
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } 
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("resultNumber").innerHTML=this.responseText;
+    }
+  }
+  
+  
+  xmlhttp.open("GET","rate.php?q="+x+"&m="+<?php echo $id ?>,true);
+  xmlhttp.send();
+}    
+</script>
 </body>
 </html>
