@@ -37,7 +37,7 @@
 			$postSearch=mysql_real_escape_string($_POST['postSearch']);
 			try {
 				echo $postSearch;
-				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE trim(lower(postTitle)) LIKE lower(trim(\'%cure%\')) ORDER BY postID DESC');
+				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE postTitle LIKE lower(\'%'.$postSearch.'%\') ORDER BY postID DESC');
 				while($row = $stmt->fetch()){
 					
 					echo '<div>';
