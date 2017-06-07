@@ -25,6 +25,7 @@
 		  <li class="home"><a href="index-contact.php"> Contact </a></li>
 	  </ul>
 	</div>
+	<h1>Search</h1>
 	<form action='' method='post'>
 		<input type='text' name='postSearch' value='<?php if(isset($error)){ echo $_POST['postSearch'];}?>'>
 		<p><input type='submit' name='submit' value='Submit' style="display: none"></p>
