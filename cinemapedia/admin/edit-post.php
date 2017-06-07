@@ -66,9 +66,10 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 			try {
 
 				//insert into database
-				$stmt = $db->prepare('UPDATE blog_posts SET postTitle = :postTitle, postDesc = :postDesc, postCont = :postCont WHERE postID = :postID') ;
+				$stmt = $db->prepare('UPDATE blog_posts SET postTitle = :postTitle, postCategory = :postCategory, postDesc = :postDesc, postCont = :postCont WHERE postID = :postID') ;
 				$stmt->execute(array(
 					':postTitle' => $postTitle,
+					':postCategory' => $postCategory,
 					':postDesc' => $postDesc,
 					':postCont' => $postCont,
 					':postID' => $postID
@@ -99,7 +100,7 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 		try {
 
-			$stmt = $db->prepare('SELECT postID, postTitle, postDesc, postCont FROM blog_posts WHERE postID = :postID') ;
+			$stmt = $db->prepare('SELECT postID, postTitle, postCategory, postDesc, postCont FROM blog_posts WHERE postID = :postID') ;
 			$stmt->execute(array(':postID' => $_GET['id']));
 			$row = $stmt->fetch(); 
 
@@ -115,6 +116,9 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 		<p><label>Title</label><br />
 		<input type='text' name='postTitle' value='<?php echo $row['postTitle'];?>'></p>
 
+		<p><label>Category</label><br />
+		<input type='text' name='postCategory' value='<?php echo $row['postCategory'];?>'></p>
+		
 		<p><label>Description</label><br />
 		<textarea name='postDesc' cols='60' rows='10'><?php echo $row['postDesc'];?></textarea></p>
 
