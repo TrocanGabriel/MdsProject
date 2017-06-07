@@ -28,7 +28,7 @@ if($row['postID'] == ''){
 	<div class="mainelements">
 	  <ul>
 		<li class="home"><a href="./"> Home </a></li>
-    <li class=""home"><a href="index-search.php"> Search </a></li>
+    	<li class="home"><a href="index-search.php"> Search </a></li>
 		<li class="home"><a href="index-horror.php"> Horror </a></li>
 		<li class="home"><a href="index-action.php"> Action </a></li>
 		<li class="home"><a href="index-adventure.php"> Adventure </a></li>
