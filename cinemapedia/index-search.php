@@ -25,10 +25,19 @@
 		  <li class="home"><a href="#"> Contact </a></li>
 	  </ul>
 	</div>
-		<?php
-			try {
+	<form action='' method='post'>
+		<input type='text' name='postSearch' value='<?php if(isset($error)){ echo $_POST['postSearch'];}?>'>
+		<p><input type='submit' name='submit' value='Submit' style="display: none"></p>
+		</form>
+	<?php
 
-				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE postCategory = trim(lower(\'fantasy\')) ORDER BY postID DESC');
+	//if form has been submitted process it
+	if(isset($_POST['submit'])){
+		if(isset($_POST['postSearch'])) 
+			$postSearch=mysql_real_escape_string($_POST['postSearch']);
+			try {
+				echo $postSearch;
+				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE postTitle LIKE lower(\'%'.$postSearch.'%\') ORDER BY postID DESC');
 				while($row = $stmt->fetch()){
 					
 					echo '<div>';
@@ -43,8 +52,8 @@
 			} catch(PDOException $e) {
 			    echo $e->getMessage();
 			}
-		?>
-
+	}
+	?>
 	</div>
 
 
