@@ -75,3 +75,54 @@ body{
 h1{
 	color:#ffffff;
 }
+
+.mainelements{
+    position:all;
+    margin-left:  50px;
+    margin-right: 50px;
+        display: inline-block;
+
+}
+
+
+
+.dropdownMenu {
+    position: relative;
+    display: inline-block;
+}
+
+.home {
+  padding: 16px;
+  background-color: black;
+}
+.dropbtn {
+    background-color:black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+
+    background-color: #333;
+
+
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}

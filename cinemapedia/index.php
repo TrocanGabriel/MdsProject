@@ -14,6 +14,39 @@
 		<h1>Cinemapedia</h1>
 		<hr />
 
+			<div class="mainelements">
+
+  <ul>
+    <li class="home"><a href="index.php"> Home </a></li>
+    <li>
+      <div class="dropdownMenu">
+        <button class="dropbtn"><a href="template/horror.html"> Horror</a>
+        </button>
+           
+      </div>
+    </li>
+    <li>
+     <div class="dropdownMenu">
+        <button class="dropbtn"><a href="template/action.html"> Actiune</a>
+        </button>
+          
+      </div>
+    </li>
+    <li>
+    <div class="dropdownMenu">
+        <button class="dropbtn"><a href="template/adventure.html"> Aventura</a>
+        </button>
+      </div>
+    </li>
+    <li>
+    <div class="dropdownMenu">
+        <button class="dropbtn"><a href="template/fantasy.html"> Fantasy</a>
+        </button>
+      </div>
+    </li>
+      <li class="home"><a href="template/contact.html"> Contact </a></li>
+  </ul>
+</div>
 		<?php
 			try {
 
