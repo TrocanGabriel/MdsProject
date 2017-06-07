@@ -64,7 +64,7 @@ if(isset($_Post['submit'])) {
    Your message has been sent.
    <?php } else { ?>
    <h1>Oops!</h1>
-   Sorry, there was a problem sending your message.
+   <p>Sorry, there was a problem sending your message.</p>
    <?php } ?>
 </div>
 </body>
