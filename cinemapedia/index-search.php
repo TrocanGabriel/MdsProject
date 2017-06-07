@@ -35,7 +35,7 @@
 	//if form has been submitted process it
 	if(isset($_POST['submit'])){
 		if(isset($_POST['postSearch'])) 
-			$postSearch=mysql_real_escape_string($_POST['postSearch']);
+			$postSearch=$_POST['postSearch'];
 			try {
 				echo $postSearch;
 				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE postTitle LIKE lower(\'%'.$postSearch.'%\') ORDER BY postID DESC');
