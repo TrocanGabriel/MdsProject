@@ -25,9 +25,36 @@
 		  <li class="home"><a href="#"> Contact </a></li>
 	  </ul>
 	</div>
+	<form action='' method='post'>
+		<input type='text' name='postSearch' value='<?php if(isset($error)){ echo $_POST['postSearch'];}?>'>
+		<p><input type='submit' name='submit' value='Submit' style="display: none"></p>
+		</form>
+	<?php
 
-<input type='text' oninput ="liveSearch(this.value)">
-<div id="dropDown"> </div>
+	//if form has been submitted process it
+	if(isset($_POST['submit'])){
+		if(isset($_POST['postSearch'])) 
+			$postSearch=mysql_real_escape_string($_POST['postSearch']);
+			try {
+				echo $postSearch;
+				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts WHERE trim(lower(postTitle)) LIKE lower(trim(\'%cure%\')) ORDER BY postID DESC');
+				while($row = $stmt->fetch()){
+					
+					echo '<div>';
+						echo '<h1><a href="viewpost.php?id='.$row['postID'].'">'.$row['postTitle'].'</a></h1>';
+						echo '<p>Posted on '.date('jS M Y H:i:s', strtotime($row['postDate'])).'</p>';
+						echo '<p>'.$row['postDesc'].'</p>';				
+						echo '<p><a href="viewpost.php?id='.$row['postID'].'">Read More</a></p>';				
+					echo '</div>';
+
+				}
+
+			} catch(PDOException $e) {
+			    echo $e->getMessage();
+			}
+	}
+	?>
+	</div>
 
 
 </body>
