@@ -30,11 +30,12 @@ if($row['postID'] == ''){
 	<div class="mainelements">
 	  <ul>
 		<li class="home"><a href="./"> Home </a></li>
-		<li class="home"><a href="horror-index.php"> Horror </a></li>
-		<li class="home"><a href="action-index.php"> Action </a></li>
-		<li class="home"><a href="adventure-index.php"> Adventure </a></li>
-		<li class="home"><a href="fantasy-index.php"> Fantasy </a></li>
-		<li class="home"><a href="#"> Contact </a></li>
+    	<li class="home"><a href="index-search.php"> Search </a></li>
+		<li class="home"><a href="index-horror.php"> Horror </a></li>
+		<li class="home"><a href="index-action.php"> Action </a></li>
+		<li class="home"><a href="index-adventure.php"> Adventure </a></li>
+		<li class="home"><a href="index-fantasy.php"> Fantasy </a></li>
+		  <li class="home"><a href="#"> Contact </a></li>
 	  </ul>
 	</div>
 
@@ -116,5 +117,31 @@ if($row['postID'] == ''){
   xmlhttp.send();
 }    
 </script>
+
+
+		<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://cinemapedia.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
+		
+	</div>
+<script id="dsq-count-scr" src="//cinemapedia.disqus.com/count.js" async></script>
 </body>
 </html>
