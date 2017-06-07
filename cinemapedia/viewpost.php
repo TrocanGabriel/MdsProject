@@ -18,7 +18,6 @@ if($row['postID'] == ''){
     <title>Cinemapedia - <?php echo $row['postTitle'];?></title>
     <link rel="stylesheet" href="style/normalize.css">
     <link rel="stylesheet" href="style/main.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -39,17 +38,28 @@ if($row['postID'] == ''){
 	  </ul>
 	</div>
 
-
 		<?php	
 			echo '<div>';
-				echo '<h1>'.$row['postTitle'].'</h1>';
-				echo '<div id="ratingAll"></div>';
+				echo '<h1>'.$row['postTitle'].'</h1>';?>
+			
+			<fieldset class="rating">
+			<input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+			<input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+			<input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+			<input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+			<input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+			<input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+			<input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+			<input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+			<input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+			<input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+		</fieldset><br>
+				<?php
 				if(isset($_SESSION['user_id']))
-					echo '<div id="ratingUser"></div>';
-				echo '<p>Posted on '.date('jS M Y', strtotime($row['postDate'])).'</p>';
-				echo '<p>'.$row['postCont'].'</p>';				
-			echo '</div>';
-		?>
+				echo '<p>Posted on '.date('jS M Y', strtotime($row['postDate'])).'</p>';echo '<p>'.$row['postCont'].'</p>';				
+			echo '</div>';?>
+		
+				
 		<div id="disqus_thread"></div>
 <script>
 
@@ -71,71 +81,7 @@ s.setAttribute('data-timestamp', +new Date());
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	</div>
-	<script>
-	$(function () {
-
-	$("#ratingAll").rateYo({
-	rating: <?php
-	$stmt = $db->prepare('SELECT ifnull(avg(rating),0) res FROM ratings WHERE movie = :postID');
-	$stmt->execute(array(':postID' => $_GET['id']));
-	$row = $stmt->fetch();
-	echo $row['res'];
-	?>,
-	numStars: 10,
-	maxValue: 10,
-	readOnly: true,
-	multiColor: {
-		"startColor": "#FF0000",
-		"endColor"  : "#00FF00"
-    }
-	});
 	
-	$("#ratingUser").rateYo({
-	rating: <?php
-	if(isset($_SESSION['user_id'])){
-	$stmt = $db->prepare('SELECT ifnull(rating,0) res FROM ratings WHERE movie = :postID AND user = :userID');
-	$stmt->execute(array(':postID' => $_GET['id']));
-	$stmt->execute(array(':userID' => $_SESSION['user_id']));
-	$row = $stmt->fetch();
-	echo $row['res'];
-	}
-	else{
-		echo '0';
-	}
-	?>,
-	numStars: 10,
-	maxValue: 10,
-	fullStar: true,
-	multiColor: {
-		"startColor": "#FF0000",
-		"endColor"  : "#00FF00"
-	},
-	onSet: function (rating, rateYoInstance) {
-		rateMovie(rating);
-		window.location.reload();
-    }
-	});
-	});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-<script>   
- function rateMovie(x) {
-  
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } 
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("resultNumber").innerHTML=this.responseText;
-    }
-  }
-  
-  
-  xmlhttp.open("GET","rate.php?q="+x+"&m="+<?php echo $id ?>,true);
-  xmlhttp.send();
-}    
-</script>
                                 
 		
 <script id="dsq-count-scr" src="//cinemapedia.disqus.com/count.js" async></script>
