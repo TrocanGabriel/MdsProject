@@ -28,10 +28,11 @@ if($row['postID'] == ''){
 	<div class="mainelements">
 	  <ul>
 		<li class="home"><a href="./"> Home </a></li>
-		<li class="home"><a href="horror-index.php"> Horror </a></li>
-		<li class="home"><a href="action-index.php"> Action </a></li>
-		<li class="home"><a href="adventure-index.php"> Adventure </a></li>
-		<li class="home"><a href="fantasy-index.php"> Fantasy </a></li>
+    <li class=""home"><a href="index-search.php"> Search </a></li>
+		<li class="home"><a href="index-horror.php"> Horror </a></li>
+		<li class="home"><a href="index-action.php"> Action </a></li>
+		<li class="home"><a href="index-adventure.php"> Adventure </a></li>
+		<li class="home"><a href="index-fantasy.php"> Fantasy </a></li>
 		  <li class="home"><a href="#"> Contact </a></li>
 	  </ul>
 	</div>
